@@ -153,7 +153,7 @@ public class AFD {
         return finales;
     }
     
-    /*public int ObtenerToken(ArrayList<Estado> aux, ArrayList<Estado> estadosfinales, ArrayList<Integer> tokens){
+    public int ObtenerToken(ArrayList<Estado> aux, ArrayList<Estado> estadosfinales, ArrayList<Integer> tokens){
         int token = 0;
         //ArrayList <Estado> aux = new ArrayList<>();
         //Verificamos cada uno de los estados con los estados finales
@@ -161,7 +161,7 @@ public class AFD {
             for(int j = 0; j < estadosfinales.size(); j++){
                 //Si existe uno
                 if(aux.get(i).getId() == estadosfinales.get(j).getId()){
-                    token = tokens.get(i); //Ponemos el token correspondiente
+                    token = tokens.get(j); //Ponemos el token correspondiente
                     j = estadosfinales.size()+2;
                     i = aux.size()+2;
                 }
@@ -169,7 +169,7 @@ public class AFD {
         }
         
         return token;
-    }*/
+    }
     
     public void EscribirArchivo( ArrayList<ArrayList<Integer>> tabla, int automata){
         String nombre = "Tabla_AFD"+automata+".txt";          //Variable para el nombre del txt
@@ -237,13 +237,17 @@ public class AFD {
         ArrayList<Estado> aux = new ArrayList<>();      //Conjunto auxiliar para el metodo Ir_A
         Queue<ArrayList<Estado>> cola = new LinkedList<>();     //Creamos la cola que contiene a los estados a analizar
         
+        if(f.tokens.isEmpty()){
+            f.calcularToken();
+        }
         meter = f.Cerradura_E(f.estadoInicial);   //Obtenemos el estado S0 (C_E del Est. Inicial)
         E.add(meter);     //Ponemos el Estado en el conjunto  final
         cola.add(meter); //Agregamos el estado en la cola para analizarlo
         
         //Mientras los estados no acaben de ser revisados
         while(!cola.isEmpty()){
-            //System.out.println("hola "+E);
+            System.out.println("hola "+E);
+            System.out.println("cola "+cola);
             aux = cola.poll();  //Sacamos un estado
             contador = 0;
             //Para cada simbolo del alfabeto
@@ -278,14 +282,14 @@ public class AFD {
             //Verificamos si el estado contiene el estado final
             if(Verificar(aux, f.estadosFinales) == true){
                 //Si lo tiene, agregamos 1
-//                destino.add(ObtenerToken(aux, f.estadosFinales, f.tokens));
+                destino.add(ObtenerToken(aux, f.estadosFinales, f.tokens));
+                //destino.add(1);
                 tabla.add(destino); //Agregamos la primera fila a la tabla
             }
             else{
                 //Caso contrario, agregamos -1
                 destino.add(-1);
                 tabla.add(destino); //Agregamos la primera fila a la tabla
-
             }
             //System.out.println("Destino "+destino);
             //System.out.println("Antes "+tabla);

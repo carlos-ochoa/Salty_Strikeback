@@ -6,6 +6,8 @@
 package test;
 
 import automata.AFN;
+import automata.Estado;
+import automata.Transicion;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static test.interfaz.afnCreados;
@@ -119,6 +121,8 @@ public class unirEstado extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ArrayList<AFN> automatas = new ArrayList<>();
         int id;
+        Estado e;
+        e = afnCreados.get(0).getEstadoInicial();
         interfaz.ultimoId++;
         id = interfaz.ultimoId;
         automatas.addAll(interfaz.afnCreados);
@@ -130,6 +134,7 @@ public class unirEstado extends javax.swing.JFrame {
             interfaz.afnCreados.remove(1);
             System.out.println("BORRADO posicion");
         }
+        afnCreados.get(0).getEstadoInicial().getTransiciones().add(new Transicion(e));
         System.out.println("Tokens");
         interfaz.afnCreados.get(0).calcularToken();
         JOptionPane.showMessageDialog(this, "Operación exitosa :D");
