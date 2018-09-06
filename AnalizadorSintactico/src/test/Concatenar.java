@@ -7,6 +7,7 @@ package test;
 
 import automata.AFN;
 import javax.swing.JOptionPane;
+import static test.interfaz.afnCreados;
 
 /**
  *
@@ -105,6 +106,10 @@ public class Concatenar extends javax.swing.JFrame {
         //jComboBox1.remove(id);
         interfaz.afnCreados.remove(segundo);
         JOptionPane.showMessageDialog(this, "Automata concatenado con exito");
+        interfaz.jTextArea1.setText("");
+        System.out.println(afnCreados.size());
+        for(AFN a : afnCreados)
+            interfaz.jTextArea1.append(a.toString() + "\n");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

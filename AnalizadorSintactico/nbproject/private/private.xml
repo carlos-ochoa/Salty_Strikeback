@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/AnalizadorSintactico/src/automata/AFD.java</file>
-            <file>file:/F:/AnalizadorSintactico/src/automata/Estado.java</file>
-            <file>file:/F:/AnalizadorSintactico/src/automata/AFN.java</file>
-            <file>file:/F:/AnalizadorSintactico/src/test/interfaz.java</file>
+            <file>file:/C:/Users/Charly/Desktop/AnalizadorSintactico/src/test/Kleene.java</file>
+            <file>file:/C:/Users/Charly/Desktop/AnalizadorSintactico/src/test/tabla.java</file>
+            <file>file:/C:/Users/Charly/Desktop/AnalizadorSintactico/src/test/Positiva.java</file>
+            <file>file:/C:/Users/Charly/Desktop/AnalizadorSintactico/src/test/CrearAutomata.java</file>
+            <file>file:/C:/Users/Charly/Desktop/AnalizadorSintactico/src/test/unirEstado.java</file>
+            <file>file:/C:/Users/Charly/Desktop/AnalizadorSintactico/src/test/interfaz.java</file>
+            <file>file:/C:/Users/Charly/Desktop/AnalizadorSintactico/src/test/Concatenar.java</file>
+            <file>file:/C:/Users/Charly/Desktop/AnalizadorSintactico/src/test/Unir.java</file>
+            <file>file:/C:/Users/Charly/Desktop/AnalizadorSintactico/src/automata/AFD.java</file>
+            <file>file:/C:/Users/Charly/Desktop/AnalizadorSintactico/src/test/Interrogacion.java</file>
         </group>
     </open-files>
 </project-private>
