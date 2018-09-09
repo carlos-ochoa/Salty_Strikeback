@@ -5,9 +5,11 @@
  */
 package test;
 
-import test.interfaz;
 import automata.AFN;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import static test.interfaz.afnCreados;
 
 /**
  *
@@ -21,8 +23,25 @@ public class Unir extends javax.swing.JFrame {
     public Unir() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargarCombos();
     }
-
+    
+    public void cargarCombos(){
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) jComboBox1.getModel();
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) jComboBox2.getModel();
+        ArrayList<String> items = new ArrayList<>();
+        for(int i = 0; i <= interfaz.afnCreados.size() - 1 ; i++)
+            items.add(i + "");
+        modelo.removeAllElements();
+        modelo2.removeAllElements();
+        for(String i : items){
+            modelo.addElement(i);
+            modelo2.addElement(i);
+        }
+        jComboBox1.setModel(modelo);
+        jComboBox2.setModel(modelo2);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,6 +129,10 @@ public class Unir extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Autómata unido con éxito");
         //interfaz.afnCreados.add(autoUno);
         interfaz.afnCreados.remove(segundo);
+        interfaz.jTextArea1.setText("");
+        System.out.println(afnCreados.size());
+        for(AFN a : afnCreados)
+            interfaz.jTextArea1.append(a.toString() + "\n");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /*private int idSiguiente(AFN uno, AFN dos){

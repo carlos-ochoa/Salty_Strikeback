@@ -18,6 +18,7 @@ public class AFN {
     protected Estado estadoInicial;
     protected ArrayList<Estado> estadosFinales;
     protected ArrayList<Transicion> transiciones;
+    protected ArrayList<Integer> tokens = new ArrayList<>();
 
     public AFN(ArrayList<Estado> estados, ArrayList<Character> alfabeto, Estado estadoInicial, ArrayList<Estado> estadosFinales) {
         this.estados = estados;
@@ -64,6 +65,27 @@ public class AFN {
 
     public void setEstadosFinales(ArrayList<Estado> estadosFinales) {
         this.estadosFinales = estadosFinales;
+    }
+    
+    public ArrayList<Integer> calcularToken(){
+        int i = 0;
+        int c = 0;
+        for(Estado e : this.estadosFinales){
+            i += 10;
+            this.tokens.add(i);
+            System.out.println(this.tokens.get(c) + " ");
+            c++;
+        }
+        return this.tokens;
+    }
+    
+    public ArrayList<Integer> añadirToken(){
+        int i = this.tokens.size() + 1;
+        this.tokens.add(i * 10);
+        for(int t : this.tokens){
+            System.out.println(t + " ");
+        }
+        return this.tokens;
     }
     
     public AFN unirAEstadoBasico(ArrayList<AFN> afn, int id){

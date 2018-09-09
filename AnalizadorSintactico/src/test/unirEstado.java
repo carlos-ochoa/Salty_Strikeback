@@ -6,8 +6,11 @@
 package test;
 
 import automata.AFN;
+import automata.Estado;
+import automata.Transicion;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import static test.interfaz.afnCreados;
 
 /**
  *
@@ -117,15 +120,28 @@ public class unirEstado extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ArrayList<AFN> automatas = new ArrayList<>();
-        int id, i;
+        int id;
+        Estado e;
+        e = afnCreados.get(0).getEstadoInicial();
         interfaz.ultimoId++;
         id = interfaz.ultimoId;
         automatas.addAll(interfaz.afnCreados);
         automatas.remove(0);
+        System.out.println("PRUEBA");
         interfaz.afnCreados.get(0).unirAEstadoBasico(automatas, id);
-        for(i = 1; i < interfaz.afnCreados.size() ; i++)
-            interfaz.afnCreados.remove(i);
+        while(interfaz.afnCreados.size() > 1){
+            System.out.println(interfaz.afnCreados.get(1));
+            interfaz.afnCreados.remove(1);
+            System.out.println("BORRADO posicion");
+        }
+        afnCreados.get(0).getEstadoInicial().getTransiciones().add(new Transicion(e));
+        System.out.println("Tokens");
+        interfaz.afnCreados.get(0).calcularToken();
         JOptionPane.showMessageDialog(this, "Operación exitosa :D");
+        interfaz.jTextArea1.setText("");
+        System.out.println(afnCreados.size());
+        for(AFN a : afnCreados)
+            interfaz.jTextArea1.append(a.toString() + "\n");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -133,8 +149,13 @@ public class unirEstado extends javax.swing.JFrame {
         origen = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         destino = Integer.parseInt(jComboBox2.getSelectedItem().toString());
         interfaz.afnCreados.get(origen).unirAEstadoBasico(interfaz.afnCreados.get(destino));
+        interfaz.afnCreados.get(0).añadirToken();
         interfaz.afnCreados.remove(destino);
         JOptionPane.showMessageDialog(this, "Operación exitosa :3");
+        interfaz.jTextArea1.setText("");
+        System.out.println(afnCreados.size());
+        for(AFN a : afnCreados)
+            interfaz.jTextArea1.append(a.toString() + "\n");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

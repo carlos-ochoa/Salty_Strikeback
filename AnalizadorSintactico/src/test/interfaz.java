@@ -8,6 +8,7 @@ package test;
 import automata.AFD;
 import automata.AFN;
 import automata.Estado;
+import automata.lexico;
 import java.util.ArrayList;
 
 /**
@@ -43,7 +44,6 @@ public class interfaz extends javax.swing.JFrame {
         jPanelPrincipal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -65,37 +65,25 @@ public class interfaz extends javax.swing.JFrame {
 
         jLabel1.setText("Operaciones de un AFN");
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
-
-        jButton1.setText("Ver automatas");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addGap(221, 221, 221)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jButton1)
-                .addGap(0, 79, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jMenu1.setText("AFN");
@@ -111,7 +99,7 @@ public class interfaz extends javax.swing.JFrame {
 
         jMenu2.setText("Operaciones");
 
-        jMenuItem2.setText("Mover");
+        jMenuItem2.setText("Transformar AFN a AFD");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -119,7 +107,7 @@ public class interfaz extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
-        jMenuItem3.setText("Ir A");
+        jMenuItem3.setText("Ver tabla AFD");
         jMenu2.add(jMenuItem3);
 
         jMenu1.add(jMenu2);
@@ -177,7 +165,7 @@ public class interfaz extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem8);
 
-        jMenuItem7.setText("Ver tabla");
+        jMenuItem7.setText("Ver tabla AFN");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -229,10 +217,24 @@ public class interfaz extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         AFD prueba = new AFD ();
-        //ArrayList<ArrayList<Integer>> tabla = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> tabla = new ArrayList<>();
+        ArrayList<Character> alfabeto = new ArrayList<>();
+        alfabeto.add('+');
+        alfabeto.add('-');
+        alfabeto.add('D');
+        alfabeto.add('.');
+        alfabeto.add('L');
+        alfabeto.add('S');
+        alfabeto.add('T');
+        alfabeto.add('e');
+        alfabeto.add('E');
         //tabla = prueba.Transformar_AFN(afnCreados.get(0));
         //prueba.EscribirArchivo(tabla,0);
-        prueba.LeerTabla("Tabla_AFD0.txt");
+        tabla = prueba.LeerTabla("Tabla_AFD0.txt");
+        System.out.println("Tabla "+tabla);
+        lexico l = new lexico();
+        l.analisis(tabla, "Hola67Willy+56.56alhabla+.45", alfabeto);
+        l.analisis(tabla, "Hola a todos Willy al habla", alfabeto);
         //afnCreados.get(0).Cerradura_E(afnCreados.get(0).getEstadoInicial());
         //afnCreados.get(0).Cerradura_E(afnCreados.get(0).getEstados());
         //afnCreados.get(0).Mover(afnCreados.get(0).getEstadoInicial(),'s');
@@ -261,13 +263,6 @@ public class interfaz extends javax.swing.JFrame {
         tabla t = new tabla();
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTextArea1.setText("");
-        System.out.println(afnCreados.size());
-        for(AFN a : afnCreados)
-            jTextArea1.append(a.toString() + "\n");
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         unirEstado ue = new unirEstado();
@@ -324,7 +319,6 @@ public class interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -344,6 +338,6 @@ public class interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
+    public static javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
